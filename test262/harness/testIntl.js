@@ -1156,7 +1156,8 @@ function testValidDateTimeComponentValue(component, value) {
  * @exception if the test fails.
  */
 function testArraysAreSame(expected, actual) {
-    for (i = 0; i < Math.max(actual.length, expected.length); i++) {
+    // Escargot modification : The original version does not work in strict mode because it references i without var.
+    for (var i = 0; i < Math.max(actual.length, expected.length); i++) {
         if (actual[i] !== expected[i]) {
             $ERROR("Result array element at index " + i + " should be \"" +
                 expected[i] + "\" but is \"" + actual[i] + "\".");
